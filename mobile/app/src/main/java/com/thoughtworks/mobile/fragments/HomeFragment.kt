@@ -21,23 +21,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
+import androidx.navigation.fragment.findNavController
+import com.thoughtworks.mobile.R
 import com.thoughtworks.mobile.ui.theme.MobileTheme
-import kotlin.math.log
 
 class HomeFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
 
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return ComposeView(requireContext()).apply {
-            println("test")
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 MobileTheme {
@@ -45,23 +41,26 @@ class HomeFragment : Fragment() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        FloatingButton{}
+                        FloatingButton {
+                            findNavController().navigate(R.id.action_home_to_add)
+                        }
                     }
                 }
             }
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         // TODO: Use the ViewModel
     }
 
 }
 
 @Composable
-fun FloatingButton(onClick: ()->Unit) {
+fun FloatingButton(onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .padding(16.dp),
