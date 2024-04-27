@@ -1,6 +1,5 @@
 package com.thoughtworks.mobile.ui.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,10 +23,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import com.thoughtworks.mobile.R
 import com.thoughtworks.mobile.ui.theme.MobileTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,14 +49,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        // TODO: Use the ViewModel
-    }
-
 }
 
 @Composable
