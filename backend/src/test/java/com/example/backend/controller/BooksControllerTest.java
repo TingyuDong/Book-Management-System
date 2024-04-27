@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.data.Book;
+import com.example.backend.exception.BookNotFoundException;
 import com.example.backend.service.BooksService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
