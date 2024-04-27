@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.data.Book;
+import com.example.backend.exception.BookNotFoundException;
 import com.example.backend.repository.BooksRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,7 @@ public class BooksServiceTest {
     BooksRepository booksRepository;
 
     @Test
-    public void getBookById() {
+    public void getBookById() throws BookNotFoundException {
 
         BooksService booksService = new BooksService(booksRepository);
 

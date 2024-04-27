@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.data.Book;
+import com.example.backend.exception.BookNotFoundException;
 import com.example.backend.repository.BooksRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class BooksService {
     }
 
 
-    public Book findById(long id) {
+    public Book findById(long id) throws BookNotFoundException {
         Optional<Book> oBook = booksRepository.findById(id);
         return oBook.get();
     }

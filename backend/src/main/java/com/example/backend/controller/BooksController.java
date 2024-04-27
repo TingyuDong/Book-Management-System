@@ -18,7 +18,7 @@ public class BooksController {
     }
 
     @GetMapping("/{id}")
-    public Book findById(@PathVariable long id) {
+    public Book findById(@PathVariable long id) throws Exception {
         return booksService.findById(id);
     }
 }
