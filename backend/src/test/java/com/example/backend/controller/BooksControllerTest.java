@@ -11,6 +11,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -47,6 +49,20 @@ public class BooksControllerTest {
         mockMvc.perform(get("/books/1")).andExpect(status().isNotFound());
 
         verify(booksService).findById(1);
+
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        List<Book> books = List.of(new Book().withId(1L).withName("Iliad"),new Book().withId(2L).withName("Histories"));
+
+        when(booksService.findAll()).thenReturn(books);
+
+        mockMvc.perform(get("/books")).andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Iliad"))
+                .andExpect(jsonPath("$[1].name").value("Histories"));
+
+        verify(booksService).findAll();
 
     }
 }
