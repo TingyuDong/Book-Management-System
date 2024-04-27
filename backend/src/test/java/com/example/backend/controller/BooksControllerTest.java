@@ -31,8 +31,19 @@ public class BooksControllerTest {
 
         when(booksService.findById(1L)).thenReturn(book);
 
-        mockMvc.perform(get("/book/1")).andExpect(status().isOk())
+        mockMvc.perform(get("/books/1")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Iliad"));
+
+        verify(booksService).findById(1);
+
+    }
+
+    @Test
+    public void testGetByIdNotFound() throws Exception {
+
+        when(booksService.findById(1)).thenThrow(new BookNotFoundException());
+
+        mockMvc.perform(get("/books/1")).andExpect(status().isNotFound());
 
         verify(booksService).findById(1);
 
