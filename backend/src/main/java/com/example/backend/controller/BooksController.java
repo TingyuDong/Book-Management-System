@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BooksController {
@@ -20,5 +22,10 @@ public class BooksController {
     @GetMapping("/{id}")
     public Book findById(@PathVariable long id) throws Exception {
         return booksService.findById(id);
+    }
+
+    @GetMapping
+    public List<Book> findAll() {
+        return booksService.findAll();
     }
 }
