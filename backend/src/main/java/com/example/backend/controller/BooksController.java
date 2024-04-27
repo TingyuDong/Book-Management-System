@@ -4,9 +4,11 @@ import com.example.backend.data.Book;
 import com.example.backend.service.BooksService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/books")
 public class BooksController {
 
     private BooksService booksService;
@@ -15,7 +17,7 @@ public class BooksController {
         this.booksService = booksService;
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("/{id}")
     public Book findById(@PathVariable long id) {
         return booksService.findById(id);
     }
