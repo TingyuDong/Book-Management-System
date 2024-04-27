@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.fragments
+package com.thoughtworks.mobile.ui.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,10 +9,6 @@ import android.view.ViewGroup
 import com.thoughtworks.mobile.R
 
 class BookAddFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = BookAddFragment()
-    }
 
     private lateinit var viewModel: BookAddViewModel
 

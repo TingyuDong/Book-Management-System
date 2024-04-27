@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.fragments
+package com.thoughtworks.mobile.ui.fragments
 
 import androidx.lifecycle.ViewModel
 

@@ -26,6 +26,6 @@ public class BooksController {
 
     @GetMapping
     public List<Book> findAll() {
-        return booksService.findAll();
+        return List.of(new Book().withId(1L).withName("Iliad"),new Book().withId(2L).withName("Histories"));
     }
 }
