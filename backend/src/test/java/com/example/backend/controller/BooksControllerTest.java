@@ -36,9 +36,7 @@ public class BooksControllerTest {
 
         mockMvc.perform(get("/books/1")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Iliad"));
-
         verify(booksService).findById(1);
-
     }
 
     @Test
@@ -47,9 +45,7 @@ public class BooksControllerTest {
         when(booksService.findById(1)).thenThrow(new BookNotFoundException());
 
         mockMvc.perform(get("/books/1")).andExpect(status().isNotFound());
-
         verify(booksService).findById(1);
-
     }
 
     @Test
@@ -61,8 +57,6 @@ public class BooksControllerTest {
         mockMvc.perform(get("/books")).andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("Iliad"))
                 .andExpect(jsonPath("$[1].name").value("Histories"));
-
         verify(booksService).findAll();
-
     }
 }
