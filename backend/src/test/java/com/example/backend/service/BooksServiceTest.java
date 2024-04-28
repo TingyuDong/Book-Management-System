@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -43,6 +44,18 @@ public class BooksServiceTest {
 
         assertThat(foundBooks).isEqualTo(books);
         verify(booksRepository).findAll();
+    }
+
+    @Test
+    public void addBook() {
+        BooksService booksService = new BooksService(booksRepository);
+        Book book = new Book().withId(1L).withName("Iliad");
+
+        when(booksRepository.save(any(Book.class))).thenReturn(book);
+        Book addBooks = booksService.addBook(book);
+
+        assertThat(addBooks).isEqualTo(book);
+        verify(booksRepository).save(book);
     }
 
 }
