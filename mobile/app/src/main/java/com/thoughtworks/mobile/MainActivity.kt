@@ -1,10 +1,9 @@
-package com.thoughtworks.book_management
+package com.thoughtworks.mobile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.thoughtworks.mobile.R
+import androidx.fragment.app.FragmentActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
