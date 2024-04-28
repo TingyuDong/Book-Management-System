@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface BooksRepository {
     fun getAllBooksStream(): Flow<List<Book>>
+    suspend fun addBook(book: Book)
 }
 
 class BooksRepositoryImpl(
@@ -13,5 +14,9 @@ class BooksRepositoryImpl(
 ): BooksRepository {
     override fun getAllBooksStream(): Flow<List<Book>> {
         return booksRemoteDataSource.latestAllBooks
+    }
+
+    override suspend fun addBook(book: Book) {
+        return booksRemoteDataSource.addBook(book)
     }
 }

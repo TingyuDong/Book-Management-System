@@ -13,8 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -58,5 +60,17 @@ public class BooksControllerTest {
                 .andExpect(jsonPath("$[0].name").value("Iliad"))
                 .andExpect(jsonPath("$[1].name").value("Histories"));
         verify(booksService).findAll();
+    }
+
+    @Test
+    public void testAddBook() throws Exception {
+        Book book = new Book().withId(1L).withName("Iliad");
+
+        when(booksService.addBook(any(Book.class))).thenReturn(book);
+
+        mockMvc.perform(post("/books").contentType("application/json")
+                .content("{ \"name\": \"Iliad\" }")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Iliad"));
+        verify(booksService).addBook(any(Book.class));
     }
 }

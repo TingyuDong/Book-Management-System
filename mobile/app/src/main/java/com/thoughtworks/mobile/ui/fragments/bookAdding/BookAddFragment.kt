@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.ui.fragments.home
+package com.thoughtworks.mobile.ui.fragments.bookAdding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,25 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.navigation.fragment.findNavController
-import com.thoughtworks.mobile.R
+import com.thoughtworks.mobile.data.modal.Book
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class BookAddFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val bookAddViewModel: BookAddViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                HomeScreen(viewModel=homeViewModel) {
-                    findNavController().navigate(R.id.action_home_to_add)
-                }
+                BookAddScreen(viewModel = bookAddViewModel)
             }
         }
     }
+
 }

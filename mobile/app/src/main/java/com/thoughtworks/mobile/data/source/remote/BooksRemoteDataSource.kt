@@ -7,13 +7,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 interface BooksRemoteDataSource {
-    val latestAllBooks: Flow<List<Book>>
+    suspend fun addBook(book: Book)
+    var latestAllBooks: Flow<List<Book>>
 }
 
 class BooksRemoteDataSourceImpl(
     private val booksApi: BooksApi,
     private val refreshIntervalMs: Long = 5000
 ) : BooksRemoteDataSource {
+    override suspend fun addBook(book: Book) {
+        booksApi.addBook(book)
+    }
+
     override var latestAllBooks: Flow<List<Book>> = flow {
         while (true) {
             val latestAllBooks = booksApi.fetchAllBooks()
