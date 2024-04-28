@@ -23,7 +23,7 @@ public class BooksController {
 
     @GetMapping
     public List<Book> findAll() {
-        return List.of(new Book().withId(1L).withName("Iliad"), new Book().withId(2L).withName("Histories"), new Book().withId(2L).withName("Legend"), new Book().withId(2L).withName("Shield of Thunder"));
+        return booksService.findAll();
     }
 
     @PostMapping
