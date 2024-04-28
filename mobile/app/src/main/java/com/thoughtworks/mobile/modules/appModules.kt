@@ -13,57 +13,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL = "http://localhost:8080"
-
-val appModules = module {
-    includes(
-        useCaseModules,
-    )
-
-    viewModel {
-        HomeViewModel(get())
-    }
-}
-
-val useCaseModules = module {
-    includes(
-        repositoryModules,
-    )
-
-    factory {
-        FetchBooksUseCase(get())
-    }
-}
-
-val repositoryModules = module {
-    includes(
-        dataSourceModules,
-    )
-
-    single<BooksRepository> {
-        BooksRepositoryImpl(get())
-    }
-}
-
-val dataSourceModules = module {
-    includes(
-        apiHelperModules,
-    )
-
-    single<BooksRemoteDataSource> {
-        BooksRemoteDataSourceImpl(get(), get())
-    }
-}
-
-val apiHelperModules = module {
-    includes(
-        retrofitModules,
-    )
-
-    single {
-        get<Retrofit>().create(BooksApi::class.java)
-    }
-}
+private const val BASE_URL = "http://10.0.2.2:8080"
 
 val retrofitModules = module {
     single {
@@ -77,5 +27,55 @@ val retrofitModules = module {
             .addConverterFactory(GsonConverterFactory.create(get()))
             .baseUrl(BASE_URL)
             .build()
+    }
+}
+
+val apiHelperModules = module {
+    includes(
+        retrofitModules,
+    )
+
+    single {
+        get<Retrofit>().create(BooksApi::class.java)
+    }
+}
+
+val dataSourceModules = module {
+    includes(
+        apiHelperModules,
+    )
+
+    single<BooksRemoteDataSource> {
+        BooksRemoteDataSourceImpl(get())
+    }
+}
+
+val repositoryModules = module {
+    includes(
+        dataSourceModules,
+    )
+
+    single<BooksRepository> {
+        BooksRepositoryImpl(get())
+    }
+}
+
+val useCaseModules = module {
+    includes(
+        repositoryModules,
+    )
+
+    factory {
+        FetchBooksUseCase(get())
+    }
+}
+
+val appModules = module {
+    includes(
+        useCaseModules,
+    )
+
+    viewModel {
+        HomeViewModel(get())
     }
 }
