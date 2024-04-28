@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.ui.fragments
+package com.thoughtworks.mobile.ui.fragments.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,6 +25,8 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import com.thoughtworks.mobile.R
+import com.thoughtworks.mobile.ui.fragments.HomeUiState
+import com.thoughtworks.mobile.ui.fragments.HomeViewModel
 import com.thoughtworks.mobile.ui.theme.MobileTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
