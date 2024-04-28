@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.ui.fragments
+package com.thoughtworks.mobile.ui.fragments.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 data class HomeUiState(
-    var books: List<Book> = emptyList(),
+    val books: List<Book> = emptyList(),
 )
 
 class HomeViewModel(
-    private val fetchBooksUseCase: FetchBooksUseCase
+    fetchBooksUseCase: FetchBooksUseCase
 ) : ViewModel() {
     private var _booksAsync = fetchBooksUseCase.invoke()
 

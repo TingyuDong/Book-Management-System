@@ -25,8 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.thoughtworks.mobile.data.modal.Book
-import com.thoughtworks.mobile.ui.fragments.HomeUiState
-import com.thoughtworks.mobile.ui.fragments.HomeViewModel
 import com.thoughtworks.mobile.ui.theme.MobileTheme
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
