@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.ui.fragments
+package com.thoughtworks.mobile.ui.fragments.bookAdding
 
 import androidx.lifecycle.ViewModel
 
