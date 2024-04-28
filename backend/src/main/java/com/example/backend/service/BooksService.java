@@ -33,4 +33,8 @@ public class BooksService {
         Iterable<Book> booksIterable = booksRepository.findAll();
         return StreamSupport.stream(booksIterable.spliterator(), false).collect(Collectors.toList());
     }
+
+    public Book addBook(Book book) {
+        return booksRepository.save(book);
+    }
 }
