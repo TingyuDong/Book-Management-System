@@ -6,7 +6,7 @@ import com.thoughtworks.mobile.data.repository.BooksRepositoryImpl
 import com.thoughtworks.mobile.data.source.remote.BooksRemoteDataSource
 import com.thoughtworks.mobile.data.source.remote.BooksRemoteDataSourceImpl
 import com.thoughtworks.mobile.data.source.remote.api.BooksApi
-import com.thoughtworks.mobile.ui.fragments.HomeViewModel
+import com.thoughtworks.mobile.ui.fragments.home.HomeViewModel
 import com.thoughtworks.mobile.ui.fragments.bookAdding.BookAddViewModel
 import com.thoughtworks.mobile.usecase.AddBookUseCase
 import com.thoughtworks.mobile.usecase.FetchBooksUseCase

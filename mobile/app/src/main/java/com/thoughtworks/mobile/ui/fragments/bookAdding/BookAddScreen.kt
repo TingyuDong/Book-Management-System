@@ -46,7 +46,7 @@ fun BookAddScreen(viewModel: BookAddViewModel) {
                     onChangeIsbn = uiState.changeIsbn,
                 )
                 Button(
-                    onClick = { /* Handle form submission */ },
+                    onClick = uiState.addBook,
                     modifier = Modifier
                         .padding(vertical = 8.dp)
                         .fillMaxWidth()

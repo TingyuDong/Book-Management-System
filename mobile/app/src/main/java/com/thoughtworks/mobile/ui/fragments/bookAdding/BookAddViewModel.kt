@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 data class BookAddUiState(
     val bookInfo: Book,
+    val addBook: () -> Unit,
     val changeName: (String) -> Unit,
     val changeAuthor: (String) -> Unit,
     val changePublicationYear: (String) -> Unit,
@@ -28,16 +29,19 @@ class BookAddViewModel(private val addBookUseCase: AddBookUseCase) : ViewModel()
                     publicationYear = "",
                     isbn = ""
                 ),
-                changeName = { value: String ->
+                addBook = {
+                    addBook()
+                },
+                changeName = { value ->
                     changeName(value)
                 },
-                changeAuthor = { value: String ->
+                changeAuthor = { value ->
                     changeAuthor(value)
                 },
-                changePublicationYear = { value: String ->
+                changePublicationYear = { value ->
                     changePublicationYear(value)
                 },
-                changeIsbn = { value: String ->
+                changeIsbn = { value ->
                     changeIsbn(value)
                 }
             )
@@ -45,9 +49,9 @@ class BookAddViewModel(private val addBookUseCase: AddBookUseCase) : ViewModel()
 
     val uiState: StateFlow<BookAddUiState> = _uiState.asStateFlow()
 
-    fun addBook(book: Book) {
+    private fun addBook() {
         viewModelScope.launch {
-            addBookUseCase.invoke(book)
+            addBookUseCase.invoke(_uiState.value.bookInfo)
         }
     }
 
