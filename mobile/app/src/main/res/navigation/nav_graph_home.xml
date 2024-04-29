@@ -2,8 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_home"
-    app:startDestination="@id/home"
-    >
+    app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
@@ -12,9 +11,18 @@
         <action
             android:id="@+id/action_home_to_add"
             app:destination="@id/addingForms" />
+        <action
+            android:id="@+id/action_home_to_book_details"
+            app:destination="@id/bookDetails" />
     </fragment>
+
     <fragment
         android:id="@+id/addingForms"
         android:name="com.thoughtworks.mobile.ui.fragments.bookAdding.BookAddFragment"
         android:label="BookAddFragment" />
+
+    <fragment
+        android:id="@+id/bookDetails"
+        android:name="com.thoughtworks.mobile.ui.fragments.bookDetails.BookDetailsFragment"
+        android:label="BookDetailsFragment" />
 </navigation>

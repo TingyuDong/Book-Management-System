@@ -1,4 +1,4 @@
-package com.thoughtworks.mobile.ui.fragments.bookAdding
+package com.thoughtworks.mobile.ui.fragments.bookDetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import com.thoughtworks.mobile.data.modal.Book
+import com.thoughtworks.mobile.utils.SerializationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BookAddFragment : Fragment() {
+class BookDetailsFragment : Fragment() {
 
-    private val viewModel: BookAddViewModel by viewModel()
+    private val viewModel: BookDetailsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,9 +22,15 @@ class BookAddFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                BookAddScreen(viewModel = viewModel)
+                val book: Book = arguments?.getParcelable("book") ?: Book(
+                    id = null,
+                    name = "",
+                    author = "",
+                    publicationYear = "",
+                    isbn = ""
+                )
+                BookDetailsScreen(book = book)
             }
         }
     }
-
 }
