@@ -28,7 +28,42 @@ fun BookDetailsScreen(book: Book) {
             ) {
                 Text(
                     modifier = Modifier.padding(vertical = 16.dp),
+                    text = "Book Name",
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
                     text = book.name,
+                    style = MaterialTheme.typography.titleLarge,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = "Author",
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = book.author,
+                    style = MaterialTheme.typography.titleLarge,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = "Publication Year",
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = book.publicationYear,
+                    style = MaterialTheme.typography.titleLarge,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = "isbn",
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = book.isbn,
                     style = MaterialTheme.typography.titleLarge,
                 )
             }
