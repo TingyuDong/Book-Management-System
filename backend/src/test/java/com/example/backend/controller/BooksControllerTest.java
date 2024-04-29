@@ -16,10 +16,9 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(BooksController.class)
@@ -72,5 +71,17 @@ public class BooksControllerTest {
                 .content("{ \"name\": \"Iliad\" }")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Iliad"));
         verify(booksService).addBook(any(Book.class));
+    }
+
+    @Test
+    public void testDeleteBook() throws Exception {
+        Book book = new Book().withId(1L).withName("Iliad");
+
+        when(booksService.deleteBook(any(Book.class))).thenReturn(book);
+
+        mockMvc.perform(delete("/books").contentType("application/json")
+                        .content("{ \"name\": \"Iliad\" }")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Iliad"));
+        verify(booksService).deleteBook(any(Book.class));
     }
 }
