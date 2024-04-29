@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -29,7 +30,11 @@ import com.thoughtworks.mobile.ui.theme.MobileTheme
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, onClick: () -> Unit) {
+fun HomeScreen(
+    viewModel: HomeViewModel,
+    onClickAddButton: () -> Unit,
+    onClickBook: (Book) -> Unit
+) {
     val uiState: HomeUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     MobileTheme {
@@ -43,30 +48,37 @@ fun HomeScreen(viewModel: HomeViewModel, onClick: () -> Unit) {
                     items(uiState.books.chunked(3)) { rowBooks ->
                         BookItems(
                             books = rowBooks,
+                            onClick = { book ->
+                                onClickBook(book)
+                            }
                         )
                     }
-                }
+                },
             )
-            FloatingButton(onClick = onClick)
+            FloatingButton(onClick = onClickAddButton)
         }
     }
 }
 
 @Composable
-fun BookItems(books: List<Book>) {
+fun BookItems(books: List<Book>, onClick: (Book) -> Unit) {
     Row(Modifier.padding(8.dp)) {
         books.forEach { book ->
-            BookItem(book)
+            BookItem(book) { book ->
+                onClick(book)
+            }
         }
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun BookItem(book: Book) {
+fun BookItem(book: Book, onClick: (Book) -> Unit) {
     Card(
         modifier = Modifier
             .padding(4.dp)
             .size(width = 120.dp, height = 150.dp),
+        onClick = { onClick(book) }
     ) {
         Column(
             modifier = Modifier.padding(8.dp)

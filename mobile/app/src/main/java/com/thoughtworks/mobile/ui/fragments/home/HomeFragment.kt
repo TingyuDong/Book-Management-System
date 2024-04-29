@@ -13,7 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,9 +22,17 @@ class HomeFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                HomeScreen(viewModel=homeViewModel) {
-                    findNavController().navigate(R.id.action_home_to_add)
-                }
+                HomeScreen(
+                    viewModel = viewModel,
+                    onClickAddButton = {
+                        findNavController().navigate(R.id.action_home_to_add)
+                    },
+                    onClickBook = { book ->
+                        val bundle = Bundle().apply {
+                            putParcelable("book", book)
+                        }
+                        findNavController().navigate(R.id.bookDetails, bundle)
+                    })
             }
         }
     }

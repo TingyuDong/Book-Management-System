@@ -58,4 +58,14 @@ public class BooksServiceTest {
         verify(booksRepository).save(book);
     }
 
+    @Test
+    public void deleteBook() throws BookNotFoundException {
+        BooksService booksService = new BooksService(booksRepository);
+        Book book = new Book().withId(1L).withName("Iliad");
+
+        booksService.deleteBook(book.getId());
+
+        verify(booksRepository).deleteById(book.getId());
+    }
+
 }
