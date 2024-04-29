@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -45,5 +44,11 @@ public class BooksService {
 
     public Book addBook(Book book) {
         return booksRepository.save(book);
+    }
+
+    public Book deleteBook(Long id) throws BookNotFoundException {
+        Book book = findById(id);
+        booksRepository.deleteById(id);
+        return book;
     }
 }

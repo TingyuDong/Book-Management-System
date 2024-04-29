@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.data.Book;
+import com.example.backend.exception.BookNotFoundException;
 import com.example.backend.service.BooksService;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +30,10 @@ public class BooksController {
     @PostMapping
     public Book addBook(@RequestBody Book book) {
         return booksService.addBook(book);
+    }
+
+    @DeleteMapping("/{id}")
+    public Book deleteBook(@PathVariable long id) throws BookNotFoundException {
+        return booksService.deleteBook(id);
     }
 }

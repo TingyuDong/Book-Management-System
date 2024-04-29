@@ -59,13 +59,13 @@ public class BooksServiceTest {
     }
 
     @Test
-    public void deleteBook() {
+    public void deleteBook() throws BookNotFoundException {
         BooksService booksService = new BooksService(booksRepository);
         Book book = new Book().withId(1L).withName("Iliad");
 
-        booksService.deleteBook(book);
+        booksService.deleteBook(book.getId());
 
-        verify(booksRepository).delete(book);
+        verify(booksRepository).deleteById(book.getId());
     }
 
 }

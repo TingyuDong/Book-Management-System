@@ -77,11 +77,11 @@ public class BooksControllerTest {
     public void testDeleteBook() throws Exception {
         Book book = new Book().withId(1L).withName("Iliad");
 
-        when(booksService.deleteBook(any(Book.class))).thenReturn(book);
+        when(booksService.deleteBook(any(Book.class).getId())).thenReturn(book);
 
         mockMvc.perform(delete("/books").contentType("application/json")
                         .content("{ \"name\": \"Iliad\" }")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Iliad"));
-        verify(booksService).deleteBook(any(Book.class));
+        verify(booksService).deleteBook(any(Book.class).getId());
     }
 }
