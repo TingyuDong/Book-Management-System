@@ -8,7 +8,9 @@ import com.thoughtworks.mobile.data.source.remote.BooksRemoteDataSourceImpl
 import com.thoughtworks.mobile.data.source.remote.api.BooksApi
 import com.thoughtworks.mobile.ui.fragments.home.HomeViewModel
 import com.thoughtworks.mobile.ui.fragments.bookAdding.BookAddViewModel
+import com.thoughtworks.mobile.ui.fragments.bookDetails.BookDetailsViewModel
 import com.thoughtworks.mobile.usecase.AddBookUseCase
+import com.thoughtworks.mobile.usecase.DeleteBookUseCase
 import com.thoughtworks.mobile.usecase.FetchBooksUseCase
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -79,6 +81,10 @@ val useCaseModules = module {
     factory {
         AddBookUseCase(get(), get())
     }
+
+    factory {
+        DeleteBookUseCase(get(), get())
+    }
 }
 
 val appModules = module {
@@ -92,5 +98,9 @@ val appModules = module {
 
     viewModel {
         BookAddViewModel(get())
+    }
+
+    viewModel {
+        BookDetailsViewModel(get())
     }
 }

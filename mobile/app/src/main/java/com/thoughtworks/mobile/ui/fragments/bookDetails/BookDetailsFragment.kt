@@ -28,7 +28,8 @@ class BookDetailsFragment : Fragment() {
                     publicationYear = "",
                     isbn = ""
                 )
-                BookDetailsScreen(book = book)
+                viewModel.initBookInfo(book)
+                BookDetailsScreen(viewModel=viewModel, book = book)
             }
         }
     }

@@ -19,7 +19,7 @@ data class BookAddUiState(
 )
 
 class BookAddViewModel(private val addBookUseCase: AddBookUseCase) : ViewModel() {
-    private var _uiState: MutableStateFlow<BookAddUiState> =
+    private val _uiState: MutableStateFlow<BookAddUiState> =
         MutableStateFlow(
             BookAddUiState(
                 bookInfo = Book(
@@ -59,17 +59,17 @@ class BookAddViewModel(private val addBookUseCase: AddBookUseCase) : ViewModel()
         _uiState.value = _uiState.value.copy(bookInfo = _uiState.value.bookInfo.copy(name = value))
     }
 
-    fun changeAuthor(value: String) {
+    private fun changeAuthor(value: String) {
         _uiState.value =
             _uiState.value.copy(bookInfo = _uiState.value.bookInfo.copy(author = value))
     }
 
-    fun changePublicationYear(value: String) {
+    private fun changePublicationYear(value: String) {
         _uiState.value =
             _uiState.value.copy(bookInfo = _uiState.value.bookInfo.copy(publicationYear = value))
     }
 
-    fun changeIsbn(value: String) {
+    private fun changeIsbn(value: String) {
         _uiState.value = _uiState.value.copy(bookInfo = _uiState.value.bookInfo.copy(isbn = value))
     }
 }

@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 interface BooksRepository {
     fun getAllBooksStream(): Flow<List<Book>>
     suspend fun addBook(book: Book)
+    suspend fun deleteBook(bookId: Long)
 }
 
 class BooksRepositoryImpl(
@@ -28,5 +29,9 @@ class BooksRepositoryImpl(
 
     override suspend fun addBook(book: Book) {
         return booksRemoteDataSource.addBook(book)
+    }
+
+    override suspend fun deleteBook(bookId: Long) {
+        return booksRemoteDataSource.deleteBook(bookId)
     }
 }

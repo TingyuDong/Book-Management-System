@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.flow
 
 interface BooksRemoteDataSource {
     suspend fun addBook(book: Book)
+    suspend fun deleteBook(bookId: Long)
     var latestAllBooks: Flow<List<Book>>
 }
 
@@ -17,6 +18,10 @@ class BooksRemoteDataSourceImpl(
 ) : BooksRemoteDataSource {
     override suspend fun addBook(book: Book) {
         booksApi.addBook(book)
+    }
+
+    override suspend fun deleteBook(bookId: Long) {
+        booksApi.deleteBook(bookId)
     }
 
     override var latestAllBooks: Flow<List<Book>> = flow {
