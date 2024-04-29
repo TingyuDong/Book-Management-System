@@ -24,7 +24,7 @@ data class Book(
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeLong(id!!)
+        id?.let { dest.writeLong(id!!) }
         dest.writeString(name)
         dest.writeString(author)
         dest.writeString(publicationYear)

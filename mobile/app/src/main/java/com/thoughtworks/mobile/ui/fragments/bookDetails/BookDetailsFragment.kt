@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.thoughtworks.mobile.data.modal.Book
-import com.thoughtworks.mobile.utils.SerializationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookDetailsFragment : Fragment() {
